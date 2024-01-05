@@ -165,7 +165,11 @@ Rails.application.config.add_autoload_paths_to_load_path = false
 # not yet been upgraded must be able to read caches from upgraded servers,
 # leave this optimization off on the first deploy, then enable it on a
 # subsequent deploy.
-Rails.application.config.active_record.marshalling_format_version = 7.1
+# Rails.application.config.active_record.marshalling_format_version = 7.1
+# TODO: The line above setting via `Rails.application...` should work, but does not
+# https://github.com/rails/rails/issues/49827
+# We must have some gem interacting with AR loading. The below line is a workaround.
+ActiveRecord.marshalling_format_version = 7.1
 
 # Run `after_commit` and `after_*_commit` callbacks in the order they are defined in a model.
 # This matches the behaviour of all other callbacks.
